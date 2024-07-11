@@ -1,0 +1,279 @@
+function checkMessageFocusAndAddButton() {
+    const messageElements = document.getElementsByClassName("msg-form__contenteditable");
+    if (messageElements.length > 0) {
+        const messageElement = messageElements[0];
+        if (messageElement.getAttribute('data-artdeco-is-focused') === 'true') {
+            console.log("Message input is focused");
+            
+            // Check if the button already exists
+            if (!document.getElementById('magicButton')) {
+                // Create the button
+                const button = document.createElement('button');
+                button.id = 'magicButton';
+                button.style.position = 'absolute';
+                button.style.right = '10px';
+                button.style.top = '50%';
+                button.style.transform = 'translateY(-50%)';
+                button.style.border = 'none';
+                button.style.background = 'none';
+                button.style.cursor = 'pointer';
+                button.style.zIndex = '1000';
+
+                // Create the image
+                const img = document.createElement('img');
+                img.src = 'https://example.com/path-to-your-magic-tool-icon.png'; // Replace with your actual image URL
+                img.style.width = '20px';
+                img.style.height = '20px';
+
+                // Add the image to the button
+                button.appendChild(img);
+
+                // Add click event listener to the button
+                button.addEventListener('click', createModal);
+
+                // Add the button to the message element's parent
+                messageElement.parentElement.style.position = 'relative';
+                messageElement.parentElement.appendChild(button);
+            }
+        } else {
+            console.log("Message input is not focused");
+            // Remove the button if it exists
+            const existingButton = document.getElementById('magicButton');
+            if (existingButton) {
+                existingButton.remove();
+            }
+        }
+    } else {
+        console.log("Message input element not found");
+    }
+}
+
+
+// working modal
+// function createModal() {
+//     // Create overlay
+//     const overlay = document.createElement('div');
+//     overlay.style.position = 'fixed';
+//     overlay.style.top = '0';
+//     overlay.style.left = '0';
+//     overlay.style.width = '100%';
+//     overlay.style.height = '100%';
+//     overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+//     overlay.style.zIndex = '1001';
+
+//     // Create modal
+//     const modal = document.createElement('div');
+//     modal.style.position = 'fixed';
+//     modal.style.top = '50%';
+//     modal.style.left = '50%';
+//     modal.style.transform = 'translate(-50%, -50%)';
+//     modal.style.backgroundColor = 'white';
+//     modal.style.padding = '20px';
+//     modal.style.borderRadius = '5px';
+//     modal.style.zIndex = '1002';
+
+//     // Create input field
+//     const input = document.createElement('input');
+//     input.type = 'text';
+//     input.placeholder = 'Enter your prompt';
+//     input.style.marginBottom = '10px';
+//     input.style.width = '100%';
+//     input.style.padding = '5px';
+
+//     // Create generate button
+//     const generateButton = document.createElement('button');
+//     generateButton.textContent = 'Generate';
+//     generateButton.style.padding = '5px 10px';
+//     generateButton.style.cursor = 'pointer';
+
+//     // Add elements to modal
+//     modal.appendChild(input);
+//     modal.appendChild(generateButton);
+
+//     // Add modal to overlay
+//     overlay.appendChild(modal);
+
+//     // Add overlay to body
+//     document.body.appendChild(overlay);
+
+//     // Close modal when clicking outside
+//     overlay.addEventListener('click', (e) => {
+//         if (e.target === overlay) {
+//             document.body.removeChild(overlay);
+//         }
+//     });
+
+//     // Handle generate button click
+//     generateButton.addEventListener('click', () => {
+//         console.log('Generate clicked with input:', input.value);
+//         // Add your generation logic here
+//         document.body.removeChild(overlay);
+//     });
+// }
+
+//not working
+// function createModal() {
+//     // Create overlay
+//     const overlay = document.createElement('div');
+//     overlay.style.position = 'fixed';
+//     overlay.style.top = '0';
+//     overlay.style.left = '0';
+//     overlay.style.width = '100%';
+//     overlay.style.height = '100%';
+//     overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+//     overlay.style.zIndex = '1001';
+
+//     // Create modal
+//     const modal = document.createElement('div');
+//     modal.style.position = 'fixed';
+//     modal.style.top = '875px';
+//     modal.style.left = '1001px';
+//     modal.style.width = '870px';
+//     modal.style.height = '192px';
+//     modal.style.backgroundColor = '#F9FAFB';
+//     modal.style.padding = '26px';
+//     modal.style.borderRadius = '15px';
+//     modal.style.zIndex = '1002';
+//     modal.style.display = 'flex';
+//     modal.style.flexDirection = 'column';
+//     modal.style.gap = '26px';
+//     modal.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.06)';
+
+//     // Create input field
+//     const input = document.createElement('input');
+//     input.type = 'text';
+//     input.placeholder = 'Enter your prompt';
+//     input.style.width = '818px';
+//     input.style.height = '61px';
+//     input.style.borderRadius = 'calc(12px / 3)';  // numbers/12
+//     input.style.padding = '4px';
+//     input.style.fontFamily = 'Inter, sans-serif';
+//     input.style.fontSize = '24px';
+//     input.style.fontWeight = '500';
+//     input.style.lineHeight = '29.05px';
+//     input.style.textAlign = 'left';
+
+//     // Create generate button
+//     const generateButton = document.createElement('button');
+//     generateButton.textContent = 'Generate';
+//     generateButton.style.width = '108px';
+//     generateButton.style.height = '29px';
+//     generateButton.style.fontFamily = 'Inter, sans-serif';
+//     generateButton.style.fontSize = '24px';
+//     generateButton.style.fontWeight = '600';
+//     generateButton.style.lineHeight = '29.05px';
+//     generateButton.style.textAlign = 'left';
+//     generateButton.style.cursor = 'pointer';
+//     generateButton.style.border = 'none';
+//     generateButton.style.background = 'none';
+
+//     // Create a container for input and button
+//     const inputContainer = document.createElement('div');
+//     inputContainer.style.display = 'flex';
+//     inputContainer.style.alignItems = 'center';
+//     inputContainer.style.gap = '4px';
+
+//     // Add elements to inputContainer
+//     inputContainer.appendChild(input);
+//     inputContainer.appendChild(generateButton);
+
+//     // Add inputContainer to modal
+//     modal.appendChild(inputContainer);
+
+//     // Add modal to overlay
+//     overlay.appendChild(modal);
+
+//     // Add overlay to body
+//     document.body.appendChild(overlay);
+
+//     // Close modal when clicking outside
+//     overlay.addEventListener('click', (e) => {
+//         if (e.target === overlay) {
+//             document.body.removeChild(overlay);
+//         }
+//     });
+
+//     // Handle generate button click
+//     generateButton.addEventListener('click', () => {
+//         console.log('Generate clicked with input:', input.value);
+//         // Add your generation logic here
+//         document.body.removeChild(overlay);
+//     });
+// }
+
+// // Run the function every 3 seconds
+
+function createModal() {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.zIndex = '1001';
+
+    // Create modal
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '50%';
+    modal.style.left = '50%';
+    modal.style.transform = 'translate(-50%, -50%)';
+    modal.style.padding = '14px 14px 15px 14px ';
+    modal.style.borderRadius = '15px';
+    modal.style.zIndex = '1002';
+    modal.style.width = '500px';
+    modal.style.backgroundColor = '#F9FAFB';
+    modal.style.height = '120px';
+    modal.style.gap = '26px';
+    modal.style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.06)';
+
+    // Create input field
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Your prompt';
+    input.style.marginBottom = '7px';
+    input.style.width = '100%';
+    input.style.padding = '4px 4px 4px 10px';
+    input.style.backgroundColor = "white"
+    input.style.fontFamily = 'Inter, sans-serif';
+    input.style.border = '1px solid gray';
+    input.style.color = 'gray'; 
+    input.style.textAlign = 'left';
+
+    // Create generate button
+    const generateButton = document.createElement('button');
+    generateButton.textContent = 'Generate';
+    generateButton.style.padding = '5px 10px';
+    generateButton.style.cursor = 'pointer';
+    generateButton.style.backgroundColor = "rgb(59, 130, 246)"
+    generateButton.style.color = "white"
+
+    // Add elements to modal
+    modal.appendChild(input);
+    modal.appendChild(generateButton);
+
+    // Add modal to overlay
+    overlay.appendChild(modal);
+
+    // Add overlay to body
+    document.body.appendChild(overlay);
+
+    // Close modal when clicking outside
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            document.body.removeChild(overlay);
+        }
+    });
+
+    // Handle generate button click
+    generateButton.addEventListener('click', () => {
+        console.log('Generate clicked with input:', input.value);
+        // Add your generation logic here
+        document.body.removeChild(overlay);
+    });
+}
+
+setInterval(checkMessageFocusAndAddButton, 3000);
+
