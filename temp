@@ -1,3 +1,6 @@
+// one line functions for web brower based console 
+// not necessary
+
 function checkMessageFocusAndAddButton() {
     const messageElements = document.getElementsByClassName("msg-form__contenteditable");
     if (messageElements.length > 0) {
