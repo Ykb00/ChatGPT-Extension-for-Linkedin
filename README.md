@@ -1,39 +1,30 @@
-# ChatGPT Writer Take-Home Coding Assignment
 
-https://chatgptwriter.ai
 
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with command: `pnpm create plasmo --with-tailwindcss`.
+# Chat GPT extension for LinkedIn
 
-## Getting Started
+Its a demo project .
 
-1. Install dependencies: `pnpm i` or `pnp i`
 
-2. Run the development server:
 
-```bash
-pnpm dev
-# or
-npm run dev
-```
+## Features
 
-See how to load the extension: https://docs.plasmo.com/framework/workflows/dev#loading-the-extension
+its a chrome extension which can do the following :
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/).
+Adding text directly into the message box.
 
-## Where to edit?
 
-- The main code is located in src/content.tsx. By default, when you run the extension, it displays a static count button on the LinkedIn website. You need to replace it with your own code.
+## Reference
 
-![count btn on linkedin](count_btn_on_linkedin.png)
+It is a plasmo based extension. 
 
-## Making production build
 
-Run the following:
+## Working Video
 
-```bash
-pnpm build
-# or
-npm run build
-```
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+
+https://github.com/user-attachments/assets/ae840ca9-353f-47a1-8d3e-c462c55c814d
+
+
+
+
+
